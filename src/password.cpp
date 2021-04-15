@@ -3,10 +3,11 @@
 namespace keylocker {
 std::string combine_password(const password& pass)
 {
+	std::string delimiter = "|";
 	// seperate items by a '.'
-	return  pass.salt + "." +
-			pass.username + "." +
-			pass.location + "." +
+	return  pass.salt     + delimiter +
+			pass.username + delimiter +
+			pass.location + delimiter +
 			std::string(pass.password.c_str());
 }
 
@@ -22,7 +23,7 @@ password unlock_password(const std::string raw_data, const key_t& key)
 
 	std::string s(decrypted.begin(), decrypted.end());
 
-	std::string delimiter = ".";
+	std::string delimiter = "|";
 
 	std::array<std::string, 3> pass_data;
 
