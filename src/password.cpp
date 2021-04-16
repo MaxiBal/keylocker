@@ -1,5 +1,7 @@
 #include <password.hpp>
 
+
+
 namespace keylocker {
 std::string combine_password(const password& pass)
 {
@@ -54,6 +56,23 @@ std::string lock_password(const password& pass, const key_t& key)
 	auto size = crypto::Aes256::encrypt(key_, text, enc);
 
 	return std::string(enc.begin(), enc.end());
+}
+
+std::string generate_salt(size_t len) // uses c++11 - is it worth trying to downgrade?
+{
+	// get one lambda
+	auto randchar = []() -> char {
+		const char charset[] =
+		"0123456789"
+		"ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+		"abcdefghijklmnopqrstuvwxyz";
+		const size_t max_index = (sizeof(charset) - 1);
+        return charset[ rand() % max_index ]; // rand() and mod is biased!
+	};
+
+	std::string str(len,0);
+    std::generate_n( str.begin(), len, randchar );
+    return str;
 }
 
 } /* keylocker */

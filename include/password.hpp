@@ -5,15 +5,16 @@
 #include <crypto/AES.hpp>
 #include <crypto/SHA256.hpp>
 #include <key.hpp>
+
+#include <algorithm>
 #include <string>
 
-#define SALT_LEN 16
+#define SALT_LEN 32
 
 struct password;
 
 namespace {
 std::string combine_password(const password& pass);
-std::string generate_salt();
 }
 
 namespace keylocker {
@@ -25,6 +26,8 @@ struct password
 	std::string location;
 	core::secure_string password; // encrypted password
 };
+
+std::string generate_salt(size_t len = SALT_LEN);
 
 password unlock_password(const std::string raw_data, const key_t& key);
 std::string lock_password(const password& pass, const key_t& key);

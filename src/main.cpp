@@ -7,7 +7,7 @@
 using namespace keylocker;
 
 template<typename T>
-std::string array_to_string(std::array<T, KEY_SIZE> arr)
+std::string array_to_string(std::array<T, KEY_SIZE>& arr)
 {
 	std::stringstream stream;
 	for (auto it : arr)
@@ -31,7 +31,7 @@ int main()
 
 	std::cout << "Key: " << array_to_string(key) << std::endl;
 
-	keylocker::password pass = { "asdf", "maxi.balabanski@gmail.com", "https://gmail.com", "asdfasdf" };
+	keylocker::password pass = { generate_salt(), "maxi.balabanski@gmail.com", "https://gmail.com", "asdfasdf" };
 
 	std::string locked_pass = lock_password(pass, key);
 

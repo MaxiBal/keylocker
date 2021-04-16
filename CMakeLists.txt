@@ -5,7 +5,9 @@ set(SOURCE_FILES
 src/crypto/SHA256.cpp
 src/crypto/AES.cpp
 src/key.cpp
-src/password.cpp)
+src/password.cpp
+src/storage/writer.cpp
+src/storage/reader.cpp)
 
 add_library(key_locker ${SOURCE_FILES})
 
