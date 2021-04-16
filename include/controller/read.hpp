@@ -1,0 +1,6 @@
+#ifndef KEYLOCKER_CONTROLLER_READ_HPP
+#define KEYLOCKER_CONTROLLER_READ_HPP
+
+
+
+#endif /* end of include guard: KEYLOCKER_CONTROLLER_READ_HPP */
